@@ -6,7 +6,6 @@ const { bn, bigExp } = require('@1hive/contract-helpers-test/src/numbers')
 const ERC20 = artifacts.require('ERC20Sample')
 const ERC20Disablable = artifacts.require('ERC20Disablable')
 const TokenWrapper = artifacts.require('TokenWrapper')
-const ExecutionTarget = artifacts.require('ExecutionTarget')
 
 contract('TokenWrapper', ([_, root, holder, someone]) => {
   const wrappedName = 'Token Wrapper'
@@ -23,10 +22,6 @@ contract('TokenWrapper', ([_, root, holder, someone]) => {
 
   beforeEach('deploy dao with uninitialized token wrapper', async () => {
     tokenWrapper = await TokenWrapper.at(await installNewApp(dao, APP_ID, tokenWrapperBase.address, root))
-  })
-
-  it('is a forwarder', async () => {
-    assert.isTrue(await tokenWrapper.isForwarder())
   })
 
   describe('App is not initialized yet', () => {
@@ -84,17 +79,7 @@ contract('TokenWrapper', ([_, root, holder, someone]) => {
         assert.equal((await tokenWrapper.totalSupplyAt(initialBlockNumber)).toString(), 0, 'Total supply doesn\'t match')
         assert.equal((await tokenWrapper.balanceOf(holder)).toString(), amount, 'Holder balance doesn\'t match')
         assert.equal((await tokenWrapper.totalSupply()).toString(), amount, 'Total supply doesn\'t match')
-        assert.isTrue(await tokenWrapper.canForward(holder, '0x'))
         assert.equal((await erc20.balanceOf(holder)).toString(), 999998e18)
-      })
-
-      it('fails to forward if wrapped balance is zero', async () => {
-        const executionTarget = await ExecutionTarget.new()
-
-        const action = { to: executionTarget.address, calldata: executionTarget.contract.methods.execute().encodeABI() }
-        const script = encodeCallScript([action])
-
-        await assertRevert(tokenWrapper.forward(script, { from: holder }), 'TW_CAN_NOT_FORWARD')
       })
     })
 
@@ -118,16 +103,6 @@ contract('TokenWrapper', ([_, root, holder, someone]) => {
         assert.equal((await tokenWrapper.totalSupply()).toString(), previousSupply.sub(unwrappedAmount), "Total supply doesn't match")
 
         assert.equal((await erc20.balanceOf(holder)).toString(), 999999e18)
-      })
-
-      it('allows to forward', async () => {
-        const executionTarget = await ExecutionTarget.new()
-
-        const action = { to: executionTarget.address, calldata: executionTarget.contract.methods.execute().encodeABI() }
-        const script = encodeCallScript([action])
-
-        await tokenWrapper.forward(script, { from: holder })
-        assert.equal((await executionTarget.counter()).toString(), 1, 'should have received execution call')
       })
     })
 

@@ -5,7 +5,6 @@
 pragma solidity 0.4.24;
 
 import "@aragon/os/contracts/apps/AragonApp.sol";
-import "@aragon/os/contracts/common/IForwarder.sol";
 import "@aragon/os/contracts/common/IsContract.sol";
 import "@aragon/os/contracts/lib/math/SafeMath.sol";
 import "@aragon/os/contracts/lib/token/ERC20.sol";
@@ -26,7 +25,7 @@ import "@aragonone/voting-connectors-contract-utils/contracts/interfaces/IERC20W
  *   - MiniMe token
  *   - https://github.com/MyBitFoundation/MyBit-DAO.tech/blob/master/apps/MyTokens/contracts/MyTokens.sol
  */
-contract TokenWrapper is IERC20WithCheckpointing, IForwarder, IsContract, ERC20ViewOnly, AragonApp {
+contract TokenWrapper is IERC20WithCheckpointing, IsContract, ERC20ViewOnly, AragonApp {
     using SafeMath for uint256;
     using SafeERC20 for ERC20;
     using Checkpointing for Checkpointing.History;
@@ -147,44 +146,6 @@ contract TokenWrapper is IERC20WithCheckpointing, IForwarder, IsContract, ERC20V
 
     function totalSupplyAt(uint256 _blockNumber) public view returns (uint256) {
         return _totalSupplyAt(_blockNumber);
-    }
-
-    // Forwarding fns
-
-    /**
-    * @notice Tells whether the TokenWrapper app is a forwarder or not
-    * @dev IForwarder interface conformance
-    * @return Always true
-    */
-    function isForwarder() public pure returns (bool) {
-        return true;
-    }
-
-    /**
-     * @notice Execute desired action as a token holder
-     * @dev IForwarder interface conformance. Forwards any token holder action.
-     * @param _evmScript Script being executed
-     */
-    function forward(bytes _evmScript) public {
-        require(canForward(msg.sender, _evmScript), ERROR_CAN_NOT_FORWARD);
-        bytes memory input = new bytes(0);
-
-        // Add the wrapped token to the blacklist to disallow a token holder from interacting with
-        // the token on this contract's behalf (e.g. maliciously causing a transfer).
-        address[] memory blacklist = new address[](1);
-        blacklist[0] = address(depositedToken);
-
-        runScript(_evmScript, input, blacklist);
-    }
-
-    /**
-    * @notice Tells whether `_sender` can forward actions or not
-    * @dev IForwarder interface conformance
-    * @param _sender Address of the account intending to forward an action
-    * @return True if the given address can forward actions, false otherwise
-    */
-    function canForward(address _sender, bytes) public view returns (bool) {
-        return hasInitialized() && balanceOf(_sender) > 0;
     }
 
     // Internal fns
