@@ -12,11 +12,11 @@ contract('TokenWrapper', ([_, root, holder, someone]) => {
   const wrappedSymbol = 'TWR'
   const APP_ID = '0x1234123412341234123412341234123412341234123412341234123412341234'
 
-  let dao
+  let dao, acl
   let tokenWrapperBase, tokenWrapper
 
   before('deploy base', async () => {
-    ({dao} = await newDao(root))
+    ({ dao, acl } = await newDao(root))
     tokenWrapperBase = await TokenWrapper.new()
   })
 
@@ -114,6 +114,25 @@ contract('TokenWrapper', ([_, root, holder, someone]) => {
     it('can not burn invalid amounts', async () => {
       await assertRevert(tokenWrapper.withdraw(0, { from: holder }), 'TW_WITHDRAW_AMOUNT_ZERO')
       await assertRevert(tokenWrapper.withdraw(bigExp(1, 30), { from: holder }), 'TW_INVALID_WITHDRAW_AMOUNT')
+    })
+
+    context('token recovery', () => {
+      // Ensure there is a recovery vault set for the DAO
+      beforeEach('set recovery vault', async () => {
+        await dao.setRecoveryVaultAppId(await acl.appId(), { from: root })
+      })
+
+      it('describes deposited token as non-recoverable', async () => {
+        assert.isFalse(await tokenWrapper.allowRecoverability(erc20.address))
+      })
+
+      it('describes other addresses as recoverable', async () => {
+        assert.isTrue(await tokenWrapper.allowRecoverability(someone))
+      })
+
+      it('cannot recover deposited tokens into vault', async () => {
+        await assertRevert(tokenWrapper.transferToVault(erc20.address, { from: someone }), 'RECOVER_DISALLOWED')
+      })
     })
   })
 

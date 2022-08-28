@@ -120,6 +120,13 @@ contract TokenWrapper is IERC20WithCheckpointing, IsContract, ERC20ViewOnly, Ara
         emit Withdrawal(msg.sender, _amount);
     }
 
+    /**
+     * @dev Disable recovery escape hatch for deposited token
+     */
+    function allowRecoverability(address _token) public view returns (bool) {
+        return _token != address(depositedToken);
+    }
+
     // ERC20 fns - note that this token is a non-transferrable "view-only" implementation.
     // Users should only be changing balances by depositing and withdrawing tokens.
     // These functions do **NOT** revert if the app is uninitialized to stay compatible with normal ERC20s.
