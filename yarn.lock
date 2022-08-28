@@ -44,11 +44,6 @@
     ipfs-http-client "^50.0.0"
     node-fetch "^2.6.1"
 
-"@aragon/hardhat-config@^1.0.1":
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/@aragon/hardhat-config/-/hardhat-config-1.0.1.tgz#555e0db51305a22a25b3a221278e57fb911d0883"
-  integrity sha512-XUHM3vT345hexBMUt2pJMpvPbmpvCsojibpktq9vVpMqoWeEEZ+8x9koA+HtbCTeCaU7O5s799kYfgi7HFmksA==
-
 "@aragon/os@4.3.0":
   version "4.3.0"
   resolved "https://registry.yarnpkg.com/@aragon/os/-/os-4.3.0.tgz#d40b27031affb2c4238648ae7c48970d47f3b9bc"

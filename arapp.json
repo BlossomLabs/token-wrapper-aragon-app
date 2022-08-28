@@ -1,35 +1,38 @@
 {
   "environments": {
     "default": {
-      "appName": "token-wrapper.open.aragonpm.eth",
+      "appName": "blossom-token-wrapper.open.aragonpm.eth",
       "network": "rpc"
     },
     "mainnet": {
-      "appName": "token-wrapper.hatch.aragonpm.eth",
+      "appName": "blossom-token-wrapper.open.aragonpm.eth",
       "network": "mainnet",
       "registry": "0x00000000000C2E074eC69A0dFb2997BA6C7d2e1e",
       "wsRPC": "wss://mainnet.eth.aragon.network/ws"
     },
     "rinkeby": {
-      "appName": "token-wrapper.hatch.aragonpm.eth",
+      "appName": "blossom-token-wrapper.open.aragonpm.eth",
       "network": "rinkeby",
       "registry": "0x98Df287B6C145399Aaa709692c8D308357bC085D",
       "wsRPC": "wss://rinkeby.eth.aragon.network/ws"
     },
     "ropsten": {
-      "appName": "token-wrapper.hatch.aragonpm.eth",
+      "appName": "blossom-token-wrapper.open.aragonpm.eth",
       "network": "ropsten",
       "registry": "0x6afe2cacee211ea9179992f89dc61ff25c61e923",
       "wsRPC": "wss://rinkeby.eth.aragon.network/ws"
     },
     "staging": {
-      "appName": "token-wrapper.hatch.aragonpm.eth",
+      "appName": "blossom-token-wrapper.open.aragonpm.eth",
       "network": "rinkeby",
       "registry": "0xfe03625ea880a8cba336f9b5ad6e15b0a3b5a939",
       "wsRPC": "wss://rinkeby.eth.aragon.network/ws"
+    },
+    "frame": {
+      "registry": "0xaafca6b0c89521752e559650206d7c925fd0e530"
     }
   },
   "roles": [],
   "path": "contracts/TokenWrapper.sol",
-  "appName": "token-wrapper.hatch.aragonpm.eth"
+  "appName": "blossom-token-wrapper.open.aragonpm.eth"
 }
