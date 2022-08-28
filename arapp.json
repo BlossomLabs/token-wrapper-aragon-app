@@ -30,5 +30,6 @@
     }
   },
   "roles": [],
-  "path": "contracts/TokenWrapper.sol"
+  "path": "contracts/TokenWrapper.sol",
+  "appName": "token-wrapper.hatch.aragonpm.eth"
 }
