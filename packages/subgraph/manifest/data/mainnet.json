@@ -1,0 +1,18 @@
+{
+  "network": "mainnet",
+  "dataSources": {
+    "Organizations": [
+      {
+        "name": "Aragon Treasury",
+        "address": "0x49C8C959ce8692978e4f3B169FFd179EC241adaF",
+        "startBlock": "6592805"
+      }
+  ],
+    "OrganizationFactories": [],
+    "OrganizationTemplates": [],
+    "LegacyOrganizationTemplates": [],
+    "TokenFactories": [],
+    "Tokens": []
+  }
+}
+

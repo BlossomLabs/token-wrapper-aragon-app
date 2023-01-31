@@ -1,0 +1,17 @@
+{
+  "network": "gnosis",
+  "dataSources": {
+    "Organizations": [
+      {
+        "name": "ANDao",
+        "address": "0x04cdD9e8073D9D0A238f622Fdc11c6dAf9398Ba8",
+        "startBlock": "25880570"
+      }
+    ],
+    "OrganizationFactories": [],
+    "OrganizationTemplates": [],
+    "LegacyOrganizationTemplates": [],
+    "TokenFactories": [],
+    "Tokens": []
+  }
+}

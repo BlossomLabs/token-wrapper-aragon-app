@@ -1,0 +1,36 @@
+type TokenWrapper @entity {
+  id: ID!
+  token: Token!
+  orgAddress: Bytes!
+}
+
+type Token @entity {
+  id: ID!
+  name: String!
+  symbol: String!
+  decimals: Int!
+}
+
+type WrappedToken @entity {
+  id: ID!
+  name: String!
+  symbol: String!
+  decimals: Int!
+  totalSupply: BigInt!
+  token: Token
+  tokenWrapper: TokenWrapper!
+}
+
+type TokenHolder @entity {
+  id: ID!
+  address: Bytes!
+  token: WrappedToken!
+  balance: BigInt!
+}
+
+type AragonInfo @entity {
+  id: ID!
+  orgs: [Bytes!]!
+  apps: [Bytes!]!
+  tokens: [Bytes!]!
+}
