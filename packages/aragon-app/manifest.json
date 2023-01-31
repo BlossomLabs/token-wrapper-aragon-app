@@ -10,7 +10,6 @@
       "sizes": "56x56"
     }
   ],
-  "screenshots": [{ "src": "/meta/screenshot-1.png" }],
   "start_url": "/index.html",
   "script": "/script.js"
 }
