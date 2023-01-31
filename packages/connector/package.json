@@ -37,7 +37,7 @@
   "dependencies": {
     "@1hive/connect-core": "^0.9.13",
     "@1hive/connect-thegraph": "^0.9.13",
-    "@1hive/connect-types":"^0.9.13",
+    "@1hive/connect-types": "^0.9.13",
     "graphql-tag": "^2.10.3"
   },
   "devDependencies": {
