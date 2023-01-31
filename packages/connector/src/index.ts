@@ -1,0 +1,6 @@
+export { default as ERC20 } from './models/ERC20'
+export { default as TokenHolder } from './models/TokenHolder'
+export { default as WrappedToken } from './models/WrappedToken'
+export { default as TokenWrapper } from './models/TokenWrapper'
+export { default as TokenWrapperConnectorTheGraph } from './thegraph/connector'
+export { default } from './connect'

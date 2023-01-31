@@ -1,0 +1,24 @@
+{
+  "compilerOptions": {
+    "rootDir": "src",
+    "outDir": "dist/esm",
+    "allowSyntheticDefaultImports": true,
+    "alwaysStrict": true,
+    "baseUrl": ".",
+    "composite": true,
+    "declaration": true,
+    "declarationMap": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "module": "ESNext",
+    "moduleResolution": "node",
+    "noUnusedLocals": true,
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "sourceMap": true,
+    "strict": true,
+    "target": "es2019"
+  },
+  "include": ["src"],
+  "exclude": ["dist", "node_modules"]
+}
