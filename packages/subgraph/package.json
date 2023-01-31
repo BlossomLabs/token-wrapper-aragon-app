@@ -1,6 +1,7 @@
 {
   "name": "@blossom-labs/subgraph-token-wrapper",
   "version": "0.1.0",
+  "private": true,
   "scripts": {
     "codegen": "rm -rf generated; graph codegen",
     "build": "rm -rf build; graph build",
