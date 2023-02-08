@@ -22,7 +22,12 @@ echo '> Generating types'
 graph codegen
 
 # Prepare subgraph name
-FULLNAME=$USER/aragon-$NAME-$NETWORK
+FULLNAME=$USER/aragon-$NAME
+
+if [ "$NETWORK" != "mainnet" ]; then
+  FULLNAME=$FULLNAME-$NETWORK
+fi
+
 if [ "$STAGING" ]; then
   FULLNAME=$FULLNAME-staging
 fi

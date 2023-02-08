@@ -17,7 +17,7 @@ import {
 
 export function subgraphUrlFromChainId(chainId: number) {
   if (chainId === 1) {
-    return "https://api.thegraph.com/subgraphs/name/blossomlabs/aragon-bl-token-wrapper-mainnet"
+    return "https://api.thegraph.com/subgraphs/name/blossomlabs/aragon-bl-token-wrapper"
   }
   if (chainId === 100) {
     return "https://api.thegraph.com/subgraphs/name/blossomlabs/aragon-bl-token-wrapper-gnosis"
