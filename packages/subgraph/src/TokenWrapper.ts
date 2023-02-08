@@ -58,7 +58,7 @@ export function getTokenWrapperEntity(address: Address): TokenWrapperEntity {
     }
   }
 
-  return tokenWrapperEntity!
+  return tokenWrapperEntity
 }
 
 function buildTokenHolderEntityId(
@@ -84,7 +84,8 @@ export function handleDeposit(event: DepositEvent): void {
 
   tokenHolder.balance = tokenHolder.balance.plus(event.params.amount)
 
-  const wrappedToken = WrappedTokenEntity.load(event.address.toHexString())
+  const wrappedToken = WrappedTokenEntity.load(event.address.toHexString())!
+
   wrappedToken.totalSupply = wrappedToken.totalSupply.plus(event.params.amount)
 
   wrappedToken.save()
@@ -113,7 +114,8 @@ export function handleWithdrawal(event: WithdrawalEvent): void {
     tokenHolder.save()
   }
 
-  const wrappedToken = WrappedTokenEntity.load(event.address.toHexString())
+  const wrappedToken = WrappedTokenEntity.load(event.address.toHexString())!
+
   wrappedToken.totalSupply = wrappedToken.totalSupply.minus(event.params.amount)
 
   wrappedToken.save()
