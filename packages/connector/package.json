@@ -1,6 +1,6 @@
 {
   "name": "@blossom-labs/connect-token-wrapper",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "license": "LGPL-3.0-or-later",
   "description": "Access and interact with Aragon Organizations and their apps.",
   "author": "Blossom Labs",
