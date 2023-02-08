@@ -4,10 +4,10 @@
     "Organizations": [
       {
         "name": "Aragon Treasury",
-        "address": "0x49C8C959ce8692978e4f3B169FFd179EC241adaF",
-        "startBlock": "6592805"
+        "address": "0x08101cFEA107326820C701A8A5caD87620670a99",
+        "startBlock": "16584932"
       }
-  ],
+    ],
     "OrganizationFactories": [],
     "OrganizationTemplates": [],
     "LegacyOrganizationTemplates": [],
@@ -15,4 +15,3 @@
     "Tokens": []
   }
 }
-
